@@ -19,11 +19,15 @@
         display: block;
         margin: 0 auto;
       }
+      h1 {
+        text-align: center;
+      }
 
     </style>
 
   </head>
   <body>
+    <h1> HI! </h1>
     <script>
 
       $(document).ready(function(){
@@ -69,7 +73,7 @@
               });
               var getUserTimeline = function(user) {
                 for (var i = 0; i < streams.users[user].length - 1; i++) {
-                  var tweet = streams.users[user][i];
+
                   var $tweet = $('<div class="container"></div>');
                   $tweet.text('@' + tweet.user + ': ' + tweet.message + moment(tweet.created_at).fromNow());
 
@@ -78,13 +82,32 @@
               }
         };
       });
+      var write = $('<button type="button">Name</button>')
+      write.appendTo($body)
+      $(write).on('click', function(event) {
+        var foam = $('<form></form>');
+        foam.append('<input type = "message" value="message">')
+        foam.appendTo($body)
+        $(foam).on('submit', function (event) {
+           visitor = $(foam).find('input').val();
+           streams.users[visitor] = []
+        })
+      })
+      var writes = $('<button type="button">Message</button>')
+      writes.appendTo($body)
+      $(writes).on('click', function(event) {
+          var foams = $('<form></form>')
+          foams.append('<input type = "message" value="message">')
+          foams.appendTo($body)
+          $(foams).on('submit', function (event) {
+            var message = $(foams).find('input').val();
+            writeTweet(message);
+          })
+        })
 
 
 
-
-
-
-      });
+  });
 
 
 
