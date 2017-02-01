@@ -44,8 +44,10 @@
         // }
       var $button = $('<button type="button">Tweet Me!</button>')
       $button.appendTo($body)
+      var tcount = 0;
       $('button').on('click', function(event) {
-      for (var i = streams.home.length - 11; i < streams.home.length - 1; i++) {
+      for (var i = tcount; i < streams.home.length - 1; i++) {
+              tcount += 1;
               var tweet = streams.home[i];
               var $tweet = $('<div class ="container"></div>');
               var $userLink = $('<span><a href="#">Test</a></span>')
@@ -72,6 +74,7 @@
               });
         };
       });
+
       var count = 0;
       var getUserTimeline = function(user) {
         var tweetmessages = streams.users[user]
@@ -85,13 +88,15 @@
           i -= 1;
           count += 1;
         }
-      }
+      };
+
       var resetcount = $('<button type="button">PUSH BEFORE CLICKING ON USER TWEETS</button>')
       resetcount.appendTo($body)
       $(resetcount).on('click', function(event) {
         event.preventDefault();
         count = 0;
-      })
+      });
+
       var write = $('<button type="button">Name</button>')
       write.appendTo($body)
       $(write).on('click', function(event) {
@@ -102,7 +107,8 @@
            visitor = $(foam).find('input').val();
            streams.users[visitor] = []
         })
-      })
+      });
+
       var writes = $('<button type="button">Message</button>')
       writes.appendTo($body)
       $(writes).on('click', function(event) {
@@ -113,7 +119,7 @@
             var message = $(foams).find('input').val();
             writeTweet(message);
           })
-        })
+        });
 
 
 
