@@ -3,113 +3,24 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
-    <style>
-      .container {
-        background-color: #DBE9EE;
-        text-align: center;
-        border-radius: 25px;
-        margin: auto;
-        padding: 20px;
-        width: 400px;
-        height: 20px;
-      }
-      span {
-        text-align: center;
-        display: block;
-        margin: 0 auto;
-      }
-      h1 {
-        text-align: center;
-      }
-
-    </style>
-
   </head>
   <body>
-    <h1> HI! </h1>
     <script>
 
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
 
-        // var index = streams.home.length - 1;
-        // while(index >= 0){
-        //   var tweet = streams.home[index];
-        //   var $tweet = $('<div></div>');
-        //   $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          // $tweet.appendTo($body);
-        //   index -= 1;
-        // }
-      var $button = $('<button type="button">Tweet Me!</button>')
-      $button.appendTo($body)
-      $('button').on('click', function(event) {
-      for (var i = streams.home.length - 11; i < streams.home.length - 1; i++) {
-              var tweet = streams.home[i];
-              var $tweet = $('<div class ="container"></div>');
-              var $userLink = $('<span><a href="#">Test</a></span>')
+        var index = streams.home.length - 1;
+        while(index >= 0){
+          var tweet = streams.home[index];
+          var $tweet = $('<div></div>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.appendTo($body);
+          index -= 1;
+        }
 
-              $userLink.find('a').html(tweet.user);
-
-              // console.log('$userLink', $userLink)
-              // console.log('$userLink.html()', $userLink.html())
-
-
-              $tweet.text('@' + tweet.message + moment(tweet.created_at).fromNow());
-              $userLink.appendTo($body)
-              $tweet.appendTo($body)
-              // console.log('$tweet', $tweet.html())
-              // console.log($('span'));
-
-
-              $('span').on('click', function(event) {
-                event.preventDefault();
-                var user = $(this).text();
-                // console.log(user);
-
-                getUserTimeline(user);
-
-              });
-              var getUserTimeline = function(user) {
-                for (var i = 0; i < streams.users[user].length - 1; i++) {
-
-                  var $tweet = $('<div class="container"></div>');
-                  $tweet.text('@' + tweet.user + ': ' + tweet.message + moment(tweet.created_at).fromNow());
-
-                  $tweet.appendTo($body)
-                }
-              }
-        };
       });
-      var write = $('<button type="button">Name</button>')
-      write.appendTo($body)
-      $(write).on('click', function(event) {
-        var foam = $('<form></form>');
-        foam.append('<input type = "message" value="message">')
-        foam.appendTo($body)
-        $(foam).on('submit', function (event) {
-           visitor = $(foam).find('input').val();
-           streams.users[visitor] = []
-        })
-      })
-      var writes = $('<button type="button">Message</button>')
-      writes.appendTo($body)
-      $(writes).on('click', function(event) {
-          var foams = $('<form></form>')
-          foams.append('<input type = "message" value="message">')
-          foams.appendTo($body)
-          $(foams).on('submit', function (event) {
-            var message = $(foams).find('input').val();
-            writeTweet(message);
-          })
-        })
-
-
-
-  });
-
-
 
     </script>
   </body>
